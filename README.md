@@ -1,1 +1,1 @@
-# CrossFitLanka
+# CrossFitLanka - blog management
