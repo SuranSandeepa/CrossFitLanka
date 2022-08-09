@@ -1,2 +1,2 @@
-# CrossFitLanka
-#
+# CrossFit Lanka
+#   
