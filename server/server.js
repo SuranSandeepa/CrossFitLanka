@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 require("dotenv").config(); //read .env file
 
 const user = require("./routes/user");
+const blog = require("./routes/blog");
 
 const app = express(); //invoke express
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json()); //use body-parser to convert jason to javascript object
 
 app.use("/user", user);
+app.use("/blog", blog);
 
 app.listen(PORT, () => {
   //Listen to the PORT
