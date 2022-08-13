@@ -2,7 +2,7 @@
 
 ```
 Suran Sandeepa Uththawamawadu
-Heshan Siriwardhana
+Heshan Siriwardana
 Odara Amarakoon 
 Buddhima Weerasinghe
 ```
