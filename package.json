@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SuranSandeepa/CrossFitLanka/issues"
   },
-  "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme"
+  "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme",
+  "dependencies": {
+    "vuex": "^4.0.2"
+  }
 }
