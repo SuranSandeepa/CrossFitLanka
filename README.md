@@ -1,4 +1,4 @@
-## CrossFit Lanka - Web Application :muscle:
+# CrossFit Lanka - Web Application :muscle:
 ***
 
 
