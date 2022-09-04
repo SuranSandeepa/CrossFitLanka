@@ -1,4 +1,5 @@
-# CrossFit Lanka :muscle: - Web Application 
+## CrossFit Lanka - Web Application :muscle:
+***
 
 
 ### Project Description
