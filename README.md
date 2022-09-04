@@ -16,12 +16,12 @@
 ### How To Get Started
 
 #### Prerequisites
-> * NodeJS latest LTS version installed 
+> * NodeJS latest LTS version installed. 
 > * MongoDB database.
 
 #### Procedure of running the project
-> 1. Clone the repository
-> 2. Create a file named .env inside server folder
+> 1. Clone the repository.
+> 2. Create a file named .env inside server folder.
 
 ### Group Details
 ```
