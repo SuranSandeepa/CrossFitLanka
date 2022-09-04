@@ -9,10 +9,12 @@
 * Blog Management
 
 ## Technologies
-> * VueJS
-> * NodeJS
-> * ExpressJS
-> * MongoDB
+```
+  VueJS
+  NodeJS
+  ExpressJS
+  MongoDB
+```
 
 ## How To Get Started
 
