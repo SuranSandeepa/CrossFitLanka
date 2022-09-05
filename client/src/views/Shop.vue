@@ -252,7 +252,12 @@
               v-model="item.description"
               required
             />
-
+            <div class="error" v-if="errors.imageSize">
+              <small>{{ errors.imageSize }}</small>
+            </div>
+            <div class="error" v-if="errors.imageType">
+              <small>{{ errors.imageType }}</small>
+            </div>
             <form @submit.prevent="" enctype="multipart/form-data">
               <input
                 type="file"
@@ -374,6 +379,8 @@ export default {
         itemName: "",
         itemPrice: "",
         description: "",
+        imageSize: "",
+        imageType: "",
       },
     };
   },
@@ -420,6 +427,8 @@ export default {
       this.errors.itemName = "";
       this.errors.itemPrice = "";
       this.errors.description = "";
+      this.errors.imageSize = "";
+      this.errors.imageType = "";
       // this.error = [];
 
       // if (
@@ -517,11 +526,13 @@ export default {
       this.item.file = file;
       if (!allowedTypes.includes(file.type)) {
         this.message = "Filetype is wrong!!";
-        this.error.push("Filetype is wrong");
+        //this.errors.push("Filetype is wrong");
+        this.errors.imageType = "Filetype is wrong!!";
       }
       if (file.size > 500000) {
         this.message = "Too large, max size allowed is 500kb";
-        this.error.push("Too large, max size allowed is 500kb");
+        //this.errors.push("Too large, max size allowed is 500kb");
+        this.errors.imageSize = "Too large, max size allowed is 500kb";
       }
       this.previewImage = URL.createObjectURL(file);
     },
