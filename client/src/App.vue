@@ -7,7 +7,7 @@
 
 <script>
 import Header from "@/components/Header.vue";
-import store from './store';
+import store from "./store";
 import { useStore } from "vuex";
 export default {
   data() {
@@ -25,7 +25,7 @@ export default {
   },
   components: {
     Header,
-  }
+  },
 };
 </script>
 
