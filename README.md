@@ -1,5 +1,6 @@
 # CrossFit Lanka - Web Application
-![gym7](https://user-images.githubusercontent.com/74088854/188492055-339bcb19-7b8f-4f5c-b201-5a354fcbf518.jpg)
+![gym6](https://user-images.githubusercontent.com/74088854/188492241-44e66235-7d36-47e3-9106-33dd1b170708.jpeg)
+
 
 
 ## Project Description
