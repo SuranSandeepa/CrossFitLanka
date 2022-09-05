@@ -1,4 +1,5 @@
-# CrossFit Lanka - Web Application
+<h1 align="center"> CrossFit Lanka - Web Application </h1>
+
 ![gym6](https://user-images.githubusercontent.com/74088854/188492241-44e66235-7d36-47e3-9106-33dd1b170708.jpeg)
 
 
