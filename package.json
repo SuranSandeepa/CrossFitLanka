@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme",
   "dependencies": {
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "multer": "^1.4.5-lts.1"
   }
 }

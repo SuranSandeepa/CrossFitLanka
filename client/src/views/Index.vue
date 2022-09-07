@@ -2,7 +2,12 @@
   <div class="container">
     <div class="login-container">
       <div class="login-icon">
-        <img src="@/assets/img/main2.jpg" alt="" class="center" style="margin-top: 15%;margin-bottom: 20px" />
+        <img
+          src="@/assets/img/main2.jpg"
+          alt=""
+          class="center"
+          style="margin-top: 15%; margin-bottom: 20px;"
+        />
         <h1 class="login-title">CROSSFIT LANKA</h1>
       </div>
       <div class="loginOptions">
@@ -52,9 +57,12 @@ export default {
           )
           .then((response) => {
             axios
-              .post(`http://localhost:8070/user/login`, {name: response.data.name, email: response.data.email, googleId: response.data.sub})
+              .post(`http://localhost:8070/user/login`, {
+                name: response.data.name,
+                email: response.data.email,
+                googleId: response.data.sub,
+              })
               .then((res) => {
-                console.log(res.data);
                 if (!res.data.error) {
                   store.dispatch("updateCurrentUser", {
                     email: response.data.email,
@@ -76,14 +84,15 @@ export default {
 </script>
 
 <style>
-.login-title{
-    text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 600;
-    font-size: 3rem
+.login-title {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
 }
 
-.loginOptions{
-    margin-top: 2%;
+.loginOptions {
+  margin-top: 2%;
 }
 </style>
