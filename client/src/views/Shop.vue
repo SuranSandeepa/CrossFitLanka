@@ -216,7 +216,7 @@
               <small>{{ errors.itemCode }}</small>
             </div>
             <input
-              type="text"
+              type="number"
               class="form-control form-control-sm mb-2"
               placeholder="Item Code"
               v-model="item.itemCode"
@@ -351,6 +351,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import store from "../store";
 import { useStore } from "vuex";
@@ -422,6 +423,11 @@ export default {
         `Are you sure you want to remove ${i.itemName}`
       );
     },
+    dateTimePicker: function () {
+      $("#datetimepicker").datetimepicker({
+        format: "YYYY-MM-DD",
+      });
+    },
     save: async function () {
       this.errors.itemCode = "";
       this.errors.itemName = "";
@@ -488,7 +494,7 @@ export default {
           );
           swal({
             title: "Good job",
-            text: "Item Saved Successfully",
+            text: "Item Updated Successfully",
             icon: "success",
             button: "Aww yiss!",
           }).then(function () {
