@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <br /><br />
-    <div class="card" style="background:#F8F8FF">
+    <div class="card" style="background: #c3fdb8;">
       <div class="card-body">
         <div class="table-responsive">
           <!-- <div class="row">
@@ -11,7 +11,6 @@
             class="container-fluid"
             alert="left"
             align="right"
-            
           >
             <button
               class="btn btn-success"
@@ -55,7 +54,7 @@
     </div> -->
 
     <!-- table view -->
-    <div class="card" style="background:#F8F8FF">
+    <div class="card" style="background: #c3fdb8;">
       <div class="card-body">
         <div class="table-responsive">
           <table
@@ -70,6 +69,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Schedule</th>
                 <th scope="col">Modify</th>
+                <th scope="col">Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -91,6 +91,8 @@
                     <i className="fa fa-edit"></i>&nbsp; EDIT
                   </button>
                   &nbsp;
+                </td>
+                <td>
                   <button
                     class="btn btn-danger"
                     v-if="user.role == 1"
@@ -131,7 +133,9 @@
           </div>
           <div class="modal-body needs-validation">
             <div class="error" v-if="errors.memberName">
-              <small>{{ errors.memberName }}</small>
+              <span class="badge bg-danger text-white"
+                >{{ errors.imageType }} {{ errors.memberName }}</span
+              >
             </div>
             <input
               type="text"
@@ -140,7 +144,9 @@
               v-model="member.memberName"
             />
             <div class="error" v-if="errors.memberAddress">
-              <small>{{ errors.memberAddress }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.memberAddress
+              }}</span>
             </div>
             <input
               type="text"
@@ -149,7 +155,9 @@
               v-model="member.memberAddress"
             />
             <div class="error" v-if="errors.memberContact">
-              <small>{{ errors.memberContact }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.memberContact
+              }}</span>
             </div>
             <input
               type="text"
@@ -158,7 +166,9 @@
               v-model="member.memberContact"
             />
             <div class="error" v-if="errors.description">
-              <small>{{ errors.description }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.description
+              }}</span>
             </div>
             <input
               type="text"
@@ -167,7 +177,9 @@
               v-model="member.description"
             />
             <div class="error" v-if="errors.schedule">
-              <small>{{ errors.schedule }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.schedule
+              }}</span>
             </div>
             <input
               type="text"
@@ -176,10 +188,14 @@
               v-model="member.schedule"
             />
             <div class="error" v-if="errors.imageSize">
-              <small>{{ errors.imageSize }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.imageSize
+              }}</span>
             </div>
             <div class="error" v-if="errors.imageType">
-              <small>{{ errors.imageType }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.imageType
+              }}</span>
             </div>
             <form @submit.prevent="" enctype="multipart/form-data">
               <input
@@ -189,7 +205,8 @@
                 @change="onSelect"
               />
             </form>
-            <img id="preview" :src="previewImage" width="100" />
+            <img id="preview" :src="previewImage" width="100" /><br/>
+            <span class="badge bg-warning text-dark">Allowed JPG/JPEG/PNG files only! Maximum image size is 500kb only!</span>
           </div>
           <div class="modal-footer">
             <button
@@ -449,10 +466,12 @@ export default {
       const file = this.$refs.file.files[0];
       this.member.file = file;
       if (!allowedTypes.includes(file.type)) {
-        this.message = "Filetype is wrong!!";
+        // this.message = "Filetype is wrong!!";
+        this.errors.imageType = "Filetype is wrong!";
       }
       if (file.size > 500000) {
-        this.message = "Too large, max size allowed is 500kb";
+        // this.message = "Too large, max size allowed is 500kb";
+        this.errors.imageSize = "Too large, max size allowed is 500kb";
       }
       this.previewImage = URL.createObjectURL(file);
     },

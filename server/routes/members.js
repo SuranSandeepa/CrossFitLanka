@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const moment = require("moment");
 const dotenv = require("dotenv");
 const multer = require("multer");
@@ -17,7 +17,9 @@ router.get("/", async function (req, res) {
     const data = await database.collection("GymMember").find().toArray();
     res.status(200).json({ data: data, error: null });
   } catch (err) {
-    res.status(500).json({ data: { status: "failed", token: null }, error: err });
+    res
+      .status(500)
+      .json({ data: { status: "failed", token: null }, error: err });
   }
 });
 
@@ -73,7 +75,7 @@ router.put("/:id", async (req, res) => {
     console.log(err);
     res.status(500).json({ data: { status: "Failed to update" }, error: err });
   }
-})
+});
 
 router.delete("/:id", async (req, res) => {
   try {
@@ -112,7 +114,7 @@ router.post(
   multer({
     dest: "./routes/uploads",
     fileFilter,
-    limits: { fileSize: 5000000 },
+    limits: { fileSize: 500000 },
   }).single("file"),
   (req, res) => {
     res.json({ file: req.file });
