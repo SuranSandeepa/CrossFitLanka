@@ -98,11 +98,14 @@
    <!-- card view 02 -->
 <div align = "center">
   <div class="card" style="width: 50rem;" v-for="b in filteredblogs" :key="b._id">
-      <img  :src="getImage(b)" class = "imgCenter" >
+    <br />
+    <h5 class="card-title" v-if="user.role == 1">{{b.blogCode}}</h5><br/>
+      <img  :src="getImage(b)" class = "imgCenter" width="700" height="400" >
         <div class="card-body">
-          <h5 class="card-title">{{b.blogTitle}}</h5>
-          <p class="card-text">{{b.description}}</p>
           
+          <h4 class="card-title">{{b.blogTitle}}</h4>
+          <p class="card-text">{{b.description}}</p>
+          <br /><br />
           <button
                     class="btn btn-warning"
                     @click="blogEdit(b)"
@@ -118,10 +121,55 @@
                     @click="blogDelete(b)">
                     <i className="far fa-trash-alt"></i>&nbsp; DELETE
                   </button>
+                  <br /><br />
         </div>
+        
     </div>
+    <br /><br /><br />
 </div>
     
+
+
+
+
+<!-- card view vue newbootstrap-->
+<!-- 
+
+  <v-card
+    class="mx-auto"
+    max-width="400"
+  >
+    <img src="getImage(b)" width="100%">
+    
+      <v-card-title>Top 10 Australian beaches</v-card-title>
+    
+
+    <v-card-subtitle >
+      Number 10
+    </v-card-subtitle>
+
+    <v-card-text >
+      <div>Whitehaven Beach</div>
+
+      <div>Whitsunday Island, Whitsunday Islands</div>
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn
+        color="orange"
+        text
+      >
+        Share
+      </v-btn>
+
+      <v-btn
+        color="orange"
+        text
+      >
+        Explore
+      </v-btn>
+    </v-card-actions>
+  </v-card> -->
 
   
     <!--Table view -->
@@ -191,51 +239,68 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body needs-validation">
 
             <!-- blogcode validation -->
+
+          <div class="modal-body needs-validation">
             <div class="error" v-if="errors.blogCode">
-              <small>{{errors.blogCode}}</small>
+              <span class="badge bg-danger text-white">{{errors.blogCode}}</span>
+              <!-- <small>{{errors.blogCode}}</small> -->
             </div>
+
+            <label for="fname"> Blog Code: </label>
 
             <input
               type="text"
               class="form-control form-control-sm mb-2"
               placeholder="Blog Code"
               v-model="blog.blogCode"
+              required
             />
 
             <!-- Title vallidation -->
             <div class="error" v-if="errors.blogTitle">
-              <small>{{errors.blogTitle}}</small>
+              <span class="badge bg-danger text-white">{{errors.blogTitle}}</span>              
+              <!-- <small>{{errors.blogTitle}}</small> -->
             </div>
+
+            <label for="fname"> Blog Title: </label>
 
             <input
               type="text"
               class="form-control form-control-sm mb-2"
               placeholder="Blog Title"
               v-model="blog.blogTitle"
+              required
             />
 
             <!-- description validation  -->
             <div class="error" v-if="errors.description">
-              <small>{{errors.description}}</small>
+              <span class="badge bg-danger text-white">{{errors.description}}</span> 
+              <!-- <small>{{errors.description}}</small> -->
             </div>
+
+            <label for="fname"> Description: </label>
 
             <input
               type="text"
               class="form-control form-control-sm mb-2"
               placeholder="Description"
               v-model="blog.description"
+              required
             />
 
             <!-- image validation -->
             <div class="error" v-if="errors.imageSize">
-              <small>{{ errors.imageSize }}</small>
+              <span class="badge bg-danger text-white">{{errors.imageSize}}</span> 
+              <!-- <small>{{ errors.imageSize }}</small> -->
             </div>
             <div class="error" v-if="errors.imageType">
-              <small>{{ errors.imageType }}</small>
+              <span class="badge bg-danger text-white">{{errors.imageType}}</span> 
+              <!-- <small>{{ errors.imageType }}</small> -->
             </div>
+
+            <label for="fname"> Blog Image: </label>
 
             <form @submit.prevent="" enctype="multipart/form-data">
               <input
@@ -243,9 +308,13 @@
                 accept="image/*"
                 ref="file"
                 @change="onSelect"
+                required
               />
             </form>
-            <img id="preview" :src="previewImage" width="100" />
+            <img id="preview" :src="previewImage" width="100" /> <br />
+            <span class="badge bg-warning text-dark">
+              Allowed JPGE/PNG/JPG Files Only! & Maximum Image Size 500kb !
+            </span>
 
           </div>
           <div class="modal-footer">
@@ -591,5 +660,11 @@ export default {
   margin-left: auto;
   margin-right: auto;
   widows: 20%;
+  width: "200";
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>
