@@ -63,6 +63,6 @@
 </template>
 
 <!--About-Us Style-->
-<style>
+<style scoped>
 @import url("../assets/css/about.css");
 </style>

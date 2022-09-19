@@ -1,14 +1,10 @@
 <template>
-  <div class="container">
+
+  <!--container-->
+  <div class="container shop_container">
     <br /><br />
 
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    />
-
+    <!--Admin View Top section-->
     <div class="card" v-if="user.role == 1">
       <div class="card-body">
         <div class="table-responsive">
@@ -31,7 +27,7 @@
 
           <br /><br />
 
-          <!--Search Bar-->
+          <!--Admin's Search Bar-->
           <form align="left">
             <input
               class="form-control mr-sm-2"
@@ -45,7 +41,7 @@
       </div>
     </div>
 
-    <!--Users Search View-->
+    <!--User's Search View-->
     <div class="box" v-if="user.role == 2">
       <input type="checkbox" id="check" />
       <div class="search-box">
@@ -58,7 +54,7 @@
 
     <!--Items Card View -->
     <!--Items Horizontal Card View -->
-    <div class="container mt-5">
+    <!-- <div class="container mt-5">
       <div class="card" v-for="i in filteredItems" :key="i._id">
         <div class="row">
           <div class="col-md-4">
@@ -93,28 +89,33 @@
         </div>
       </div>
     </div>
+    <br />
+    <div align="right">
+      <button class="btn btn-primary">Download PDF</button>
+    </div> -->
 
-    <!--Items Big Card View  -->
-    <!-- <section class="products">
-      <div class="product" v-for="i in filteredItems" :key="i._id">
-        <div class="product-inner">
-          <div class="product-text-wrap">
-            <h2 class="bg-text">{{ i.itemName }}</h2>
-          </div>
-          <div class="product-image-wrap">
-          <img :src="getImage(i)" width="100" />
-          </div>
-          <div class="producr-details">
-            <h2>RS.{{ i.itemPrice }}</h2>
-            <p>{{ i.itemCode }}</p>
-            <p>{{ i.description }}</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-              a accusamus soluta iusto quos praesentium cupiditate, vero nam
-              consequuntur rerum voluptate et, quod dolorem! Nihil aliquid
-              ducimus suscipit voluptas beatae!
-            </p>
-            <div align="center">
+    <!--3 by 3 Card View-->
+    <section class="store store_top">
+      <div class="shop_container">
+        <div class="shop_heading text-center">
+          <h4>VISIT OUR STORE AND KEEP YOUR FEEDBACK</h4>
+          <h1>CrossFitLanka Store</h1>
+        </div>
+        <div class="shop_content shop_grid">
+          <div class="shop_box btn_shadow" v-for="i in filteredItems" :key="i._id">
+            <div class="shop_img">
+              <img :src="getImage(i)" alt="" />
+            </div>
+            <div class="shop_category d_flex">
+              <span>{{ i.itemCode }}</span>
+              <label>
+                Rs.{{ i.itemPrice }}
+                <i class="far fa-heart"></i>
+              </label>
+            </div>
+            <h2 class="shop_title">{{ i.itemName }}</h2>
+            <!-- <p>{{ i.description }}</p> -->
+            <div>
               <button
                 class="btn btn-warning"
                 @click="itemEdit(i)"
@@ -138,56 +139,8 @@
           </div>
         </div>
       </div>
-    </section> -->
-
-    <!--Items Table View  -->
-    <!-- <div class="card">
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table align-middle">
-            <thead>
-              <tr>
-                <th scope="col">IMAGE</th>
-                <th scope="col">CODE</th>
-                <th scope="col">ITEM NAME</th>
-                <th scope="col">PRICE</th>
-                <th scope="col">DESCRIPTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="i in filteredItems" :key="i._id">
-                <td><img :src="getImage(i)" width="100" /></td>
-                <td><span v-text="i.itemCode"></span></td>
-                <td><span v-text="i.itemName"></span></td>
-                <td><span v-text="i.itemPrice"></span></td>
-                <td><span v-text="i.description"></span></td>
-                <td>
-                  <button
-                    class="btn btn-warning"
-                    @click="itemEdit(i)"
-                    data-toggle="modal"
-                    data-target="#exampleModal"
-                    v-if="user.role == 1"
-                  >
-                    <i className="fa fa-edit"></i>&nbsp; EDIT
-                  </button>
-                  &nbsp;
-                  <button
-                    class="btn btn-danger"
-                    v-if="user.role == 1"
-                    data-toggle="modal"
-                    data-target="#deleteModal"
-                    @click="itemDelete(i)"
-                  >
-                    <i className="far fa-trash-alt"></i>&nbsp; DELETE
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div> -->
+    </section>
+    <br />
 
     <!-- Action Modal -->
     <div
@@ -213,18 +166,26 @@
           </div>
           <div class="modal-body needs-validation">
             <div class="error" v-if="errors.itemCode">
-              <small>{{ errors.itemCode }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.itemCode
+              }}</span>
+              <!-- <small>{{ errors.itemCode }}</small> -->
             </div>
+            <label for="fname">Item Category:</label>
             <input
-              type="number"
+              type="text"
               class="form-control form-control-sm mb-2"
-              placeholder="Item Code"
+              placeholder="Item Category"
               v-model="item.itemCode"
               required
             />
             <div class="error" v-if="errors.itemName">
-              <small>{{ errors.itemName }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.itemName
+              }}</span>
+              <!-- <small>{{ errors.itemName }}</small> -->
             </div>
+            <label for="fname">Item Name:</label>
             <input
               type="text"
               class="form-control form-control-sm mb-2"
@@ -233,8 +194,12 @@
               required
             />
             <div class="error" v-if="errors.itemPrice">
-              <small>{{ errors.itemPrice }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.itemPrice
+              }}</span>
+              <!-- <small>{{ errors.itemPrice }}</small> -->
             </div>
+            <label for="fname">Item Price:</label>
             <input
               type="text"
               class="form-control form-control-sm mb-2"
@@ -243,8 +208,12 @@
               v-model="item.itemPrice"
             />
             <div class="error" v-if="errors.description">
-              <small>{{ errors.description }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.description
+              }}</span>
+              <!-- <small>{{ errors.description }}</small> -->
             </div>
+            <label for="fname">Item Description:</label>
             <input
               type="text"
               class="form-control form-control-sm mb-2"
@@ -253,11 +222,18 @@
               required
             />
             <div class="error" v-if="errors.imageSize">
-              <small>{{ errors.imageSize }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.imageSize
+              }}</span>
+              <!-- <small>{{ errors.imageSize }}</small> -->
             </div>
             <div class="error" v-if="errors.imageType">
-              <small>{{ errors.imageType }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.imageType
+              }}</span>
+              <!-- <small>{{ errors.imageType }}</small> -->
             </div>
+            <label for="fname">Item Image:</label>
             <form @submit.prevent="" enctype="multipart/form-data">
               <input
                 type="file"
@@ -267,7 +243,10 @@
                 required
               />
             </form>
-            <img id="preview" :src="previewImage" width="100" />
+            <img id="preview" :src="previewImage" width="100" /><br />
+            <span class="badge bg-warning text-dark">
+              Allowed JPEG/PNG/JPG Files Only! & Maximum Image Size 500kb!
+            </span>
           </div>
           <!--Form Validation-->
           <!-- <div v-for="i in error" v-bind:key="i">
@@ -356,6 +335,7 @@
 import store from "../store";
 import { useStore } from "vuex";
 import swal from "sweetalert";
+
 export default {
   data() {
     return {
@@ -444,7 +424,7 @@ export default {
       //   this.item.description
       // ) {
       if (this.item.itemCode == "") {
-        this.errors.itemCode = "Item Code is required";
+        this.errors.itemCode = "Item Category is required";
         console.log(this.errors.itemCode);
       }
       if (this.item.itemName == "") {
@@ -557,14 +537,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+@import url("../assets/css/ItemCardView.css");
+
 .price {
   font-size: 20px;
   font-weight: bold;
 }
-.error {
-  color: red;
-}
+/* .error {
+  color: white;
+} */
 
 .box {
   max-width: 1000px;
@@ -616,5 +599,9 @@ export default {
 }
 #check {
   display: none;
+}
+
+.imageValidation {
+  color: black;
 }
 </style>
