@@ -368,7 +368,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" id = "deleteModelBody">...</div>
+          <div class="modal-body" id = "deleteModalBody">...</div>
           <div class="modal-footer">
             <button
               type="button"
@@ -449,11 +449,18 @@ export default {
       console.log(b);
     },
 
-    blogDelete: function (i) {
+    // blogDelete: function (b) {
+    //   this.blog = b;
+    //   $("#exampleDeleteModalLabel").text("Remove Blogs");
+    //   $("#deleteModalBody").text(`Are you sure you want to remove ${b.blogTitle}`
+    //   );
+    // },
+
+    blogDelete: function (b) {
       this.blog = b;
-      $("#exampleDeleteModalLabel").text("Remove Blogs");
+      $("#exampleDeleteModalLabel").text("REMOVE BLOG");
       $("#deleteModalBody").text(
-        `Are you sure you want to remove ${b.blogTitle}`
+        `Are you sure you want to delete ${b.blogTitle}`
       );
     },
 

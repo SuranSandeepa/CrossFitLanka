@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const moment = require("moment");
 const dotenv = require("dotenv");
 const multer = require("multer");
@@ -81,7 +81,7 @@ router.delete("/:id", async (req, res) => {
     const data = await database
       .collection("GymBlog")
       .deleteOne({ _id: new ObjectId(req.params.id) });
-    // console.log(data);
+      //console.log(data);
     res.status(200).json({
       data: {
         status: "Delete Successfully",

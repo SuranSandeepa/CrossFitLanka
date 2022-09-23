@@ -15,21 +15,21 @@
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button>&nbsp;&nbsp;
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <router-link class="nav-item" to="/about"
-            ><a class="nav-link" href="#">ABOUT</a></router-link
-          >
+            ><a class="nav-link" href="#">ABOUT US</a></router-link
+          >&nbsp;&nbsp;
           <router-link class="nav-item" to="/shop"
             ><a class="nav-link" href="#">SHOP</a></router-link
-          >
+          >&nbsp;&nbsp;
           <router-link class="nav-item" to="/blog"
             ><a class="nav-link" href="#">BLOG</a></router-link
-          >
+          >&nbsp;&nbsp;
           <router-link class="nav-item" to="/trainers"
             ><a class="nav-link" href="#">TRAINERS</a></router-link
-          >
+          >&nbsp;&nbsp;
           <router-link class="nav-item" to="/member" v-if="user.role == 1"
             ><a class="nav-link" href="#">MEMBERS</a></router-link
           >
