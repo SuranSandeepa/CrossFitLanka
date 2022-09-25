@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <br /><br />
-    <div class="card" style="background: #c3fdb8;">
+    <div class="card" >
       <div class="card-body">
         <div class="table-responsive">
           <!-- <div class="row">
