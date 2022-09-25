@@ -4,6 +4,7 @@
 
 
 ## Project Description
+The project is focused on developing a web application for a gym named Cross Fit Lanka to ease up it’s operations as well as for the convenience of the users. The application allows the logged in users to view the member details, blogs, store items and trainers available in the gym, when they get logged in to the system by their Google credentials. All the sections and the data presented in the web application are managed by the admin of the via the dashboard portal under the categories of member, blog, store and trainer management.
 * Store Management
 * Member Management
 * Trainers Management
