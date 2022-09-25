@@ -1,11 +1,10 @@
 <template>
-
   <!--container-->
   <div class="container shop_container">
     <br /><br />
 
     <!--Admin View Top section-->
-    <div class="card" v-if="user.role == 1">
+    <div class="card search-card" v-if="user.role == 1">
       <div class="card-body">
         <div class="table-responsive">
           <!--Insert Item Btn-->
@@ -52,16 +51,31 @@
       </div>
     </div>
 
+    <br/>
+    <div align="right">
+      <button class="btn btn-primary" @click="downloadPdf()">
+        Download PDF
+      </button>
+    </div>
+
     <!--Items Card View -->
-    <!--Items Horizontal Card View -->
-    <!-- <div class="container mt-5">
-      <div class="card" v-for="i in filteredItems" :key="i._id">
+    <div class="container mt-5" ref="testHtml">
+      <!--Items Horizontal Card View -->
+      <div
+        class="card"
+        id="pdfCard"
+        ref="testHtml"
+        v-for="i in filteredItems"
+        :key="i._id"
+      >
         <div class="row">
           <div class="col-md-4">
             <img :src="getImage(i)" width="300" />
           </div>
           <div class="col-md-8">
-            <h2 class="card-title mt-2">{{ i.itemName }}</h2>
+            <h2 class="card-title mt-2">
+              {{ i.itemName }}
+            </h2>
             <p class="price">Rs.{{ i.itemPrice }}</p>
             <p>{{ i.description }}</p>
             <div>
@@ -90,12 +104,12 @@
       </div>
     </div>
     <br />
-    <div align="right">
-      <button class="btn btn-primary">Download PDF</button>
+    <!-- <div align="right">
+      <button class="btn btn-primary" @click="downloadPdf()">Download PDF</button>
     </div> -->
 
     <!--3 by 3 Card View-->
-    <section class="store store_top">
+    <!-- <section class="store store_top">
       <div class="shop_container">
         <div class="shop_heading text-center">
           <h4>VISIT OUR STORE AND KEEP YOUR FEEDBACK</h4>
@@ -114,7 +128,7 @@
               </label>
             </div>
             <h2 class="shop_title">{{ i.itemName }}</h2>
-            <!-- <p>{{ i.description }}</p> -->
+            <p>{{ i.description }}</p>
             <div>
               <button
                 class="btn btn-warning"
@@ -139,8 +153,11 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
+
     <br />
+
+    <!--Items responsive card view -->
 
     <!-- Action Modal -->
     <div
@@ -335,6 +352,12 @@
 import store from "../store";
 import { useStore } from "vuex";
 import swal from "sweetalert";
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
+import html2canvas from "html2canvas";
+import Vue from "vue";
+import VueHtmlToPaper from "vue-html-to-paper";
+import pdflogo from "../assets/img/gym7.jpg";
 
 export default {
   data() {
@@ -402,6 +425,10 @@ export default {
       $("#deleteModalBody").text(
         `Are you sure you want to remove ${i.itemName}`
       );
+    },
+    itemReadMore: function (i) {
+      this.item = i;
+      $("#exampleReadMoreModalLabel").text("wrftqf");
     },
     dateTimePicker: function () {
       $("#datetimepicker").datetimepicker({
@@ -527,8 +554,25 @@ export default {
         "base64"
       )}`;
     },
-    reload() {
+    async reload() {
       location.reload();
+    },
+
+    downloadPdf() {
+      const doc = new jsPDF("landscape", "px", "a4", "false");
+
+      doc.setFont("Helvetica", "bold");
+      doc.setFontSize(25);
+      doc.text("CrossFitLanka Gymnasium", 200, 30);
+      doc.addImage(pdflogo, "JPG", 65, 40, 500, 200);
+      doc.addPage();
+
+      doc.save("CrossFitLanka.pdf");
+
+      // autoTable(doc, { html: "#pdfCard" });
+
+      // Pass the element id here
+      // await this.$htmlToPaper("pdfCard");
     },
   },
   mounted: async function () {
@@ -538,8 +582,8 @@ export default {
 </script>
 
 <style scoped>
-
-@import url("../assets/css/ItemCardView.css");
+/* @import url("../assets/css/ItemCardView.css"); */
+@import url("../assets/css/ItemsCardViewResponsive");
 
 .price {
   font-size: 20px;
