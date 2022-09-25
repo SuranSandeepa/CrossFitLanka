@@ -54,6 +54,7 @@
     </div> -->
 
     <!-- table view -->
+    <section class="memberTable">
     <div class="card" style="background: #c3fdb8;">
       <div class="card-body">
         <div class="table-responsive">
@@ -109,6 +110,7 @@
         </div>
       </div>
     </div>
+    </section>
     <!-- Action Modal -->
     <div
       class="modal fade"
