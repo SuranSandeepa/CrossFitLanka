@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <br/>
+    <br />
     <div align="right">
       <button class="btn btn-primary" @click="downloadPdf()">
         Download PDF
@@ -104,8 +104,54 @@
       </div>
     </div>
     <br />
-    <!-- <div align="right">
-      <button class="btn btn-primary" @click="downloadPdf()">Download PDF</button>
+
+    <!--Items Table View  -->
+    <!-- <div class="card" v-if="user.role == 3">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table align-middle" id="my-table">
+            <thead>
+              <tr>
+                <th scope="col">IMAGE</th>
+                <th scope="col">CODE</th>
+                <th scope="col">ITEM NAME</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">DESCRIPTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="i in filteredItems" :key="i._id">
+                <td><img :src="getImage(i)" width="100" /></td>
+                <td><span v-text="i.itemCode"></span></td>
+                <td><span v-text="i.itemName"></span></td>
+                <td><span v-text="i.itemPrice"></span></td>
+                <td><span v-text="i.description"></span></td>
+                <td>
+                  <button
+                    class="btn btn-warning"
+                    @click="itemEdit(i)"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    v-if="user.role == 1"
+                  >
+                    <i className="fa fa-edit"></i>&nbsp; EDIT
+                  </button>
+                  &nbsp;
+                  <button
+                    class="btn btn-danger"
+                    v-if="user.role == 1"
+                    data-toggle="modal"
+                    data-target="#deleteModal"
+                    @click="itemDelete(i)"
+                  >
+                    <i className="far fa-trash-alt"></i>&nbsp; DELETE
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div> -->
 
     <!--3 by 3 Card View-->
@@ -354,6 +400,7 @@ import { useStore } from "vuex";
 import swal from "sweetalert";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
+import "jspdf-autotable";
 import html2canvas from "html2canvas";
 import Vue from "vue";
 import VueHtmlToPaper from "vue-html-to-paper";
@@ -386,6 +433,12 @@ export default {
         imageSize: "",
         imageType: "",
       },
+      columns: [
+        { title: "Item Code", field: "itemCode" },
+        { title: "Item Name", field: "itemName" },
+        { title: "Item Price", field: "itemPrice" },
+        { title: "Description", field: "description" },
+      ],
     };
   },
   watch: {
@@ -425,15 +478,6 @@ export default {
       $("#deleteModalBody").text(
         `Are you sure you want to remove ${i.itemName}`
       );
-    },
-    itemReadMore: function (i) {
-      this.item = i;
-      $("#exampleReadMoreModalLabel").text("wrftqf");
-    },
-    dateTimePicker: function () {
-      $("#datetimepicker").datetimepicker({
-        format: "YYYY-MM-DD",
-      });
     },
     save: async function () {
       this.errors.itemCode = "";
@@ -559,17 +603,94 @@ export default {
     },
 
     downloadPdf() {
-      const doc = new jsPDF("landscape", "px", "a4", "false");
+      // const doc = new jsPDF("landscape", "px", "a4", "false");
+      const doc = new jsPDF();
 
       doc.setFont("Helvetica", "bold");
       doc.setFontSize(25);
-      doc.text("CrossFitLanka Gymnasium", 200, 30);
-      doc.addImage(pdflogo, "JPG", 65, 40, 500, 200);
-      doc.addPage();
+      doc.text("CrossFitLanka Gymnasium", 50, 10);
 
+      autoTable(doc, {
+        body: [
+          {
+            name: "Ferrero Nutella Hazelnut",
+            price: "RS.6,000",
+            category: "Dessert Topping",
+          },
+          {
+            name: "Pilates Toning Dumbbells Twin-Pack",
+            price: "RS.3,840",
+            category: "Dumbbell",
+          },
+          {
+            name: "Gripper",
+            price: "RS.990",
+            category: "Gripper",
+          },
+          {
+            name: "Body Trimmer ( Pull Reducer )",
+            price: "RS.990",
+            category: "Trimmer",
+          },
+          {
+            name: "Peanut Butter",
+            price: "RS.2,990",
+            category: "Dessert Topping",
+          },
+          {
+            name: "Long Sleeve Gym Wear",
+            price: "RS.3,400",
+            category: "t-shirt",
+          },
+          {
+            name: "Hex Dumbbell 7.5 kg",
+            price: "RS.17,490",
+            category: "Dumbbell",
+          },
+          {
+            name: "Speed Skipping Rope",
+            price: "RS.3,990",
+            category: "Skipping Rope",
+          },
+          {
+            name: "Regular Skipping Rope",
+            price: "RS.1,590",
+            category: "Skipping Rope",
+          },
+          {
+            name: "Women's Cardio Fitness Bra",
+            price: "RS.2,490",
+            category: "women clothes",
+          },
+          {
+            name: "Moderate Support Fitness Sports Bra",
+            price: "RS.5,490",
+            category: "Women Clothes",
+          },
+          {
+            name: "Gym Shaker Bottle 700ml",
+            price: "RS.1,666",
+            category: "Shaker",
+          },
+          {
+            name: "Ferrero Nutella Hazelnut",
+            price: "RS.6000",
+            category: "Dessert Topping",
+          },
+        ],
+        columns: [
+          { header: "Item Name", dataKey: "name" },
+          { header: "Price", dataKey: "price" },
+          { header: "Category", dataKey: "category" },
+        ],
+      });
+
+      // doc.addImage(pdflogo, "JPG", 0, 20, 300, 100);
       doc.save("CrossFitLanka.pdf");
-
-      // autoTable(doc, { html: "#pdfCard" });
+      // doc.addPage();
+      // const doc = new jsPDF();
+      // autoTable(doc, { html: "#my-table" });
+      // doc.save("table.pdf");
 
       // Pass the element id here
       // await this.$htmlToPaper("pdfCard");
