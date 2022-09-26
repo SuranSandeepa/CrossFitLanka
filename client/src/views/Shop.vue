@@ -1,15 +1,10 @@
 <template>
-  <div class="container">
+  <!--container-->
+  <div class="container shop_container">
     <br /><br />
 
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    />
-
-    <div class="card" v-if="user.role == 1">
+    <!--Admin View Top section-->
+    <div class="card search-card" v-if="user.role == 1">
       <div class="card-body">
         <div class="table-responsive">
           <!--Insert Item Btn-->
@@ -31,7 +26,7 @@
 
           <br /><br />
 
-          <!--Search Bar-->
+          <!--Admin's Search Bar-->
           <form align="left">
             <input
               class="form-control mr-sm-2"
@@ -45,7 +40,7 @@
       </div>
     </div>
 
-    <!--Users Search View-->
+    <!--User's Search View-->
     <div class="box" v-if="user.role == 2">
       <input type="checkbox" id="check" />
       <div class="search-box">
@@ -56,16 +51,31 @@
       </div>
     </div>
 
+    <br />
+    <div align="right">
+      <button class="btn btn-primary" @click="downloadPdf()">
+        Download PDF
+      </button>
+    </div>
+
     <!--Items Card View -->
-    <!--Items Horizontal Card View -->
-    <div class="container mt-5">
-      <div class="card" v-for="i in filteredItems" :key="i._id">
+    <div class="container mt-5" ref="testHtml">
+      <!--Items Horizontal Card View -->
+      <div
+        class="card"
+        id="pdfCard"
+        ref="testHtml"
+        v-for="i in filteredItems"
+        :key="i._id"
+      >
         <div class="row">
           <div class="col-md-4">
             <img :src="getImage(i)" width="300" />
           </div>
           <div class="col-md-8">
-            <h2 class="card-title mt-2">{{ i.itemName }}</h2>
+            <h2 class="card-title mt-2">
+              {{ i.itemName }}
+            </h2>
             <p class="price">Rs.{{ i.itemPrice }}</p>
             <p>{{ i.description }}</p>
             <div>
@@ -93,58 +103,13 @@
         </div>
       </div>
     </div>
-
-    <!--Items Big Card View  -->
-    <!-- <section class="products">
-      <div class="product" v-for="i in filteredItems" :key="i._id">
-        <div class="product-inner">
-          <div class="product-text-wrap">
-            <h2 class="bg-text">{{ i.itemName }}</h2>
-          </div>
-          <div class="product-image-wrap">
-          <img :src="getImage(i)" width="100" />
-          </div>
-          <div class="producr-details">
-            <h2>RS.{{ i.itemPrice }}</h2>
-            <p>{{ i.itemCode }}</p>
-            <p>{{ i.description }}</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-              a accusamus soluta iusto quos praesentium cupiditate, vero nam
-              consequuntur rerum voluptate et, quod dolorem! Nihil aliquid
-              ducimus suscipit voluptas beatae!
-            </p>
-            <div align="center">
-              <button
-                class="btn btn-warning"
-                @click="itemEdit(i)"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                v-if="user.role == 1"
-              >
-                <i className="fa fa-edit"></i>&nbsp; EDIT
-              </button>
-              &nbsp;
-              <button
-                class="btn btn-danger"
-                v-if="user.role == 1"
-                data-toggle="modal"
-                data-target="#deleteModal"
-                @click="itemDelete(i)"
-              >
-                <i className="far fa-trash-alt"></i>&nbsp; DELETE
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
+    <br />
 
     <!--Items Table View  -->
-    <!-- <div class="card">
+    <!-- <div class="card" v-if="user.role == 3">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table align-middle">
+          <table class="table align-middle" id="my-table">
             <thead>
               <tr>
                 <th scope="col">IMAGE</th>
@@ -189,6 +154,57 @@
       </div>
     </div> -->
 
+    <!--3 by 3 Card View-->
+    <!-- <section class="store store_top">
+      <div class="shop_container">
+        <div class="shop_heading text-center">
+          <h4>VISIT OUR STORE AND KEEP YOUR FEEDBACK</h4>
+          <h1>CrossFitLanka Store</h1>
+        </div>
+        <div class="shop_content shop_grid">
+          <div class="shop_box btn_shadow" v-for="i in filteredItems" :key="i._id">
+            <div class="shop_img">
+              <img :src="getImage(i)" alt="" />
+            </div>
+            <div class="shop_category d_flex">
+              <span>{{ i.itemCode }}</span>
+              <label>
+                Rs.{{ i.itemPrice }}
+                <i class="far fa-heart"></i>
+              </label>
+            </div>
+            <h2 class="shop_title">{{ i.itemName }}</h2>
+            <p>{{ i.description }}</p>
+            <div>
+              <button
+                class="btn btn-warning"
+                @click="itemEdit(i)"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                v-if="user.role == 1"
+              >
+                <i className="fa fa-edit"></i>&nbsp; EDIT
+              </button>
+              &nbsp;
+              <button
+                class="btn btn-danger"
+                v-if="user.role == 1"
+                data-toggle="modal"
+                data-target="#deleteModal"
+                @click="itemDelete(i)"
+              >
+                <i className="far fa-trash-alt"></i>&nbsp; DELETE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+
+    <br />
+
+    <!--Items responsive card view -->
+
     <!-- Action Modal -->
     <div
       class="modal fade"
@@ -213,18 +229,26 @@
           </div>
           <div class="modal-body needs-validation">
             <div class="error" v-if="errors.itemCode">
-              <small>{{ errors.itemCode }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.itemCode
+              }}</span>
+              <!-- <small>{{ errors.itemCode }}</small> -->
             </div>
+            <label for="fname">Item Category:</label>
             <input
-              type="number"
+              type="text"
               class="form-control form-control-sm mb-2"
-              placeholder="Item Code"
+              placeholder="Item Category"
               v-model="item.itemCode"
               required
             />
             <div class="error" v-if="errors.itemName">
-              <small>{{ errors.itemName }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.itemName
+              }}</span>
+              <!-- <small>{{ errors.itemName }}</small> -->
             </div>
+            <label for="fname">Item Name:</label>
             <input
               type="text"
               class="form-control form-control-sm mb-2"
@@ -233,8 +257,12 @@
               required
             />
             <div class="error" v-if="errors.itemPrice">
-              <small>{{ errors.itemPrice }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.itemPrice
+              }}</span>
+              <!-- <small>{{ errors.itemPrice }}</small> -->
             </div>
+            <label for="fname">Item Price:</label>
             <input
               type="text"
               class="form-control form-control-sm mb-2"
@@ -243,8 +271,12 @@
               v-model="item.itemPrice"
             />
             <div class="error" v-if="errors.description">
-              <small>{{ errors.description }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.description
+              }}</span>
+              <!-- <small>{{ errors.description }}</small> -->
             </div>
+            <label for="fname">Item Description:</label>
             <input
               type="text"
               class="form-control form-control-sm mb-2"
@@ -253,11 +285,18 @@
               required
             />
             <div class="error" v-if="errors.imageSize">
-              <small>{{ errors.imageSize }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.imageSize
+              }}</span>
+              <!-- <small>{{ errors.imageSize }}</small> -->
             </div>
             <div class="error" v-if="errors.imageType">
-              <small>{{ errors.imageType }}</small>
+              <span class="badge bg-danger text-white">{{
+                errors.imageType
+              }}</span>
+              <!-- <small>{{ errors.imageType }}</small> -->
             </div>
+            <label for="fname">Item Image:</label>
             <form @submit.prevent="" enctype="multipart/form-data">
               <input
                 type="file"
@@ -267,7 +306,10 @@
                 required
               />
             </form>
-            <img id="preview" :src="previewImage" width="100" />
+            <img id="preview" :src="previewImage" width="100" /><br />
+            <span class="badge bg-warning text-dark">
+              Allowed JPEG/PNG/JPG Files Only! & Maximum Image Size 500kb!
+            </span>
           </div>
           <!--Form Validation-->
           <!-- <div v-for="i in error" v-bind:key="i">
@@ -356,6 +398,14 @@
 import store from "../store";
 import { useStore } from "vuex";
 import swal from "sweetalert";
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
+import "jspdf-autotable";
+import html2canvas from "html2canvas";
+import Vue from "vue";
+import VueHtmlToPaper from "vue-html-to-paper";
+import pdflogo from "../assets/img/gym7.jpg";
+
 export default {
   data() {
     return {
@@ -383,6 +433,12 @@ export default {
         imageSize: "",
         imageType: "",
       },
+      columns: [
+        { title: "Item Code", field: "itemCode" },
+        { title: "Item Name", field: "itemName" },
+        { title: "Item Price", field: "itemPrice" },
+        { title: "Description", field: "description" },
+      ],
     };
   },
   watch: {
@@ -423,11 +479,6 @@ export default {
         `Are you sure you want to remove ${i.itemName}`
       );
     },
-    dateTimePicker: function () {
-      $("#datetimepicker").datetimepicker({
-        format: "YYYY-MM-DD",
-      });
-    },
     save: async function () {
       this.errors.itemCode = "";
       this.errors.itemName = "";
@@ -444,7 +495,7 @@ export default {
       //   this.item.description
       // ) {
       if (this.item.itemCode == "") {
-        this.errors.itemCode = "Item Code is required";
+        this.errors.itemCode = "Item Category is required";
         console.log(this.errors.itemCode);
       }
       if (this.item.itemName == "") {
@@ -547,8 +598,102 @@ export default {
         "base64"
       )}`;
     },
-    reload() {
+    async reload() {
       location.reload();
+    },
+
+    downloadPdf() {
+      // const doc = new jsPDF("landscape", "px", "a4", "false");
+      const doc = new jsPDF();
+
+      doc.setFont("Helvetica", "bold");
+      doc.setFontSize(25);
+      doc.text("CrossFitLanka Gymnasium", 50, 10);
+
+      autoTable(doc, {
+        body: [
+          {
+            name: "Ferrero Nutella Hazelnut",
+            price: "RS.6,000",
+            category: "Dessert Topping",
+          },
+          {
+            name: "Pilates Toning Dumbbells Twin-Pack",
+            price: "RS.3,840",
+            category: "Dumbbell",
+          },
+          {
+            name: "Gripper",
+            price: "RS.990",
+            category: "Gripper",
+          },
+          {
+            name: "Body Trimmer ( Pull Reducer )",
+            price: "RS.990",
+            category: "Trimmer",
+          },
+          {
+            name: "Peanut Butter",
+            price: "RS.2,990",
+            category: "Dessert Topping",
+          },
+          {
+            name: "Long Sleeve Gym Wear",
+            price: "RS.3,400",
+            category: "t-shirt",
+          },
+          {
+            name: "Hex Dumbbell 7.5 kg",
+            price: "RS.17,490",
+            category: "Dumbbell",
+          },
+          {
+            name: "Speed Skipping Rope",
+            price: "RS.3,990",
+            category: "Skipping Rope",
+          },
+          {
+            name: "Regular Skipping Rope",
+            price: "RS.1,590",
+            category: "Skipping Rope",
+          },
+          {
+            name: "Women's Cardio Fitness Bra",
+            price: "RS.2,490",
+            category: "women clothes",
+          },
+          {
+            name: "Moderate Support Fitness Sports Bra",
+            price: "RS.5,490",
+            category: "Women Clothes",
+          },
+          {
+            name: "Gym Shaker Bottle 700ml",
+            price: "RS.1,666",
+            category: "Shaker",
+          },
+          {
+            name: "Ferrero Nutella Hazelnut",
+            price: "RS.6000",
+            category: "Dessert Topping",
+          },
+        ],
+        columns: [
+          { header: "Item Name", dataKey: "name" },
+          { header: "Price", dataKey: "price" },
+          { header: "Category", dataKey: "category" },
+        ],
+      });
+
+      // doc.addImage(pdflogo, "JPG", 0, 20, 300, 100);
+      doc.save("CrossFitLanka.pdf");
+      // doc.addPage();
+      // const doc = new jsPDF();
+      // autoTable(doc, { html: "#my-table" });
+      // doc.save("table.pdf");
+
+      // Pass the element id here
+      // await this.$htmlToPaper("pdfCard");
     },
   },
   mounted: async function () {
@@ -557,14 +702,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/* @import url("../assets/css/ItemCardView.css"); */
+@import url("../assets/css/ItemsCardViewResponsive");
+
 .price {
   font-size: 20px;
   font-weight: bold;
 }
-.error {
-  color: red;
-}
+/* .error {
+  color: white;
+} */
 
 .box {
   max-width: 1000px;
@@ -616,5 +764,9 @@ export default {
 }
 #check {
   display: none;
+}
+
+.imageValidation {
+  color: black;
 }
 </style>

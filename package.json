@@ -6,12 +6,10 @@
   "scripts": {
     "start": "concurrently \" cd client && npm i && npm start\" \"cd server && npm i && npm start\""
   },
-  
   "repository": {
     "type": "git",
     "url": "https://github.com/SuranSandeepa/CrossFitLanka.git"
   },
-  
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -19,6 +17,7 @@
   },
   "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme",
   "dependencies": {
+    "html2canvas": "^1.4.1",
     "multer": "^1.4.5-lts.1"
   }
 }
