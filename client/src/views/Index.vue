@@ -54,7 +54,6 @@ export default {
             axios
               .post(`http://localhost:8070/user/login`, {name: response.data.name, email: response.data.email, googleId: response.data.sub})
               .then((res) => {
-
                 if (!res.data.error) {
                   store.dispatch("updateCurrentUser", {
                     email: response.data.email,

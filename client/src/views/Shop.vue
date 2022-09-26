@@ -94,54 +94,8 @@
       </div>
     </div>
 
-    <!--Items Big Card View  -->
-    <!-- <section class="products">
-      <div class="product" v-for="i in filteredItems" :key="i._id">
-        <div class="product-inner">
-          <div class="product-text-wrap">
-            <h2 class="bg-text">{{ i.itemName }}</h2>
-          </div>
-          <div class="product-image-wrap">
-          <img :src="getImage(i)" width="100" />
-          </div>
-          <div class="producr-details">
-            <h2>RS.{{ i.itemPrice }}</h2>
-            <p>{{ i.itemCode }}</p>
-            <p>{{ i.description }}</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-              a accusamus soluta iusto quos praesentium cupiditate, vero nam
-              consequuntur rerum voluptate et, quod dolorem! Nihil aliquid
-              ducimus suscipit voluptas beatae!
-            </p>
-            <div align="center">
-              <button
-                class="btn btn-warning"
-                @click="itemEdit(i)"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                v-if="user.role == 1"
-              >
-                <i className="fa fa-edit"></i>&nbsp; EDIT
-              </button>
-              &nbsp;
-              <button
-                class="btn btn-danger"
-                v-if="user.role == 1"
-                data-toggle="modal"
-                data-target="#deleteModal"
-                @click="itemDelete(i)"
-              >
-                <i className="far fa-trash-alt"></i>&nbsp; DELETE
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <!--Items Table View  -->
-    <!-- <div class="card">
+    <!-- <div class="card" v-if="user.role == 3">
       <div class="card-body">
         <div class="table-responsive">
           <table class="table align-middle">
