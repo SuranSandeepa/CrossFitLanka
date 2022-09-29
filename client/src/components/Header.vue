@@ -3,7 +3,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <router-link class="nav-item" to="/home"
         ><a class="nav-link" href="#">
-          <img src="../assets/img/crossfit.jpg" width="120" height="40" alt="" /> </a
+          <img
+            src="../assets/img/crossfit.jpg"
+            width="120"
+            height="40"
+            alt=""
+          /> </a
       ></router-link>
       <button
         class="navbar-toggler"
@@ -14,8 +19,8 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
-      </button>&nbsp;&nbsp;
+        <span class="navbar-toggler-icon"></span></button
+      >&nbsp;&nbsp;
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <router-link class="nav-item" to="/about"

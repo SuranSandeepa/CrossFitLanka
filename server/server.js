@@ -8,6 +8,7 @@ require("dotenv").config(); //read .env file
 const members = require("./routes/members"); //members routes added
 const user = require("./routes/user"); //login
 const store = require("./routes/store"); //store
+const members = require("./routes/members"); //members routes added
 
 const app = express(); //invoke express
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json()); //use body-parser to convert jason to javascript obj
 app.use("/members", members); //member path added
 app.use("/user", user); //login
 app.use("/store", store); //store
+app.use("/members", members); //member path added
 
 app.listen(PORT, () => {
   //Listen to the PORT

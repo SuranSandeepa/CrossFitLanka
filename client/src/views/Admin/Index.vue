@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <br /><br />
+<<<<<<< HEAD
     <div class="card" >
+=======
+    <div class="card">
+>>>>>>> 0843bf16011db639e4dfc292fcfb03bcfc6d7afa
       <div class="card-body">
         <div class="table-responsive">
           <!-- <div class="row">
@@ -55,6 +59,7 @@
 
     <!-- table view -->
     <section class="memberTable">
+<<<<<<< HEAD
     <div class="card" style="background: #c3fdb8;">
       <div class="card-body">
         <div class="table-responsive">
@@ -110,6 +115,63 @@
         </div>
       </div>
     </div>
+=======
+      <div class="card" style="background: #c3fdb8">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table align-middle table table-hover table-fixed table table-success table-striped"
+            >
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Image</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Schedule</th>
+                  <th scope="col">Modify</th>
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="m in filteredMembers" :key="m._id">
+                  <td><img :src="getImage(m)" width="100" /></td>
+                  <td><span v-text="m.memberName"></span></td>
+                  <td><span v-text="m.memberAddress"></span></td>
+                  <td><span v-text="m.memberContact"></span></td>
+                  <td><span v-text="m.description"></span></td>
+                  <td><span v-text="m.schedule"></span></td>
+                  <td>
+                    <button
+                      class="btn btn-warning"
+                      @click="memberEdit(m)"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                      v-if="user.role == 1"
+                    >
+                      <i className="fa fa-edit"></i>&nbsp; EDIT
+                    </button>
+                    &nbsp;
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-danger"
+                      v-if="user.role == 1"
+                      data-toggle="modal"
+                      data-target="#deleteModal"
+                      @click="memberDelete(m)"
+                    >
+                      <i className="far fa-trash-alt"></i>&nbsp; DELETE
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+>>>>>>> 0843bf16011db639e4dfc292fcfb03bcfc6d7afa
     </section>
     <!-- Action Modal -->
     <div
@@ -207,8 +269,16 @@
                 @change="onSelect"
               />
             </form>
+<<<<<<< HEAD
             <img id="preview" :src="previewImage" width="100" /><br/>
             <span class="badge bg-warning text-dark">Allowed JPG/JPEG/PNG files only! Maximum image size is 500kb only!</span>
+=======
+            <img id="preview" :src="previewImage" width="100" /><br />
+            <span class="badge bg-warning text-dark"
+              >Allowed JPG/JPEG/PNG files only! Maximum image size is 500kb
+              only!</span
+            >
+>>>>>>> 0843bf16011db639e4dfc292fcfb03bcfc6d7afa
           </div>
           <div class="modal-footer">
             <button
