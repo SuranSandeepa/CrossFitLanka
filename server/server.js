@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 require("dotenv").config(); //read .env file
 
+const user = require("./routes/user");
+const trainers = require("./routes/trainers");
 
 const members = require("./routes/members"); //members routes added
 const user = require("./routes/user"); //login
@@ -18,6 +20,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json()); //use body-parser to convert jason to javascript object
 
+app.use("/user", user);
+app.use("/trainers", trainers);
 
 app.use("/members", members); //member path added
 app.use("/user", user); //login

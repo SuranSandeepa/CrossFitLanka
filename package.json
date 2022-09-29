@@ -18,10 +18,15 @@
   "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme",
   "dependencies": {
 <<<<<<< HEAD
+    "multer":"^1.4.5-lts.1"
+=======
+<<<<<<< HEAD
     "vuex": "^4.0.2",
 =======
     "html2canvas": "^1.4.1",
 >>>>>>> 0843bf16011db639e4dfc292fcfb03bcfc6d7afa
     "multer": "^1.4.5-lts.1"
+>>>>>>> 203a5671f20d25192a52d32804b0f98ecdee6f2d
   }
 }
+

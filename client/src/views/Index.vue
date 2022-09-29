@@ -63,6 +63,7 @@ export default {
                 googleId: response.data.sub,
               })
               .then((res) => {
+                
                 if (!res.data.error) {
                   store.dispatch("updateCurrentUser", {
                     email: response.data.email,
