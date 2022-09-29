@@ -2,10 +2,14 @@
   <div class="container">
     <br /><br />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div class="card" >
 =======
     <div class="card">
 >>>>>>> 0843bf16011db639e4dfc292fcfb03bcfc6d7afa
+=======
+    <div class="card" >
+>>>>>>> 5dc640d3e946e33efbcb4b5c1279f65e11eca15b
       <div class="card-body">
         <div class="table-responsive">
           <!-- <div class="row">
@@ -60,6 +64,9 @@
     <!-- table view -->
     <section class="memberTable">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5dc640d3e946e33efbcb4b5c1279f65e11eca15b
     <div class="card" style="background: #c3fdb8;">
       <div class="card-body">
         <div class="table-responsive">
@@ -115,6 +122,7 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
 =======
       <div class="card" style="background: #c3fdb8">
         <div class="card-body">
@@ -172,6 +180,8 @@
         </div>
       </div>
 >>>>>>> 0843bf16011db639e4dfc292fcfb03bcfc6d7afa
+=======
+>>>>>>> 5dc640d3e946e33efbcb4b5c1279f65e11eca15b
     </section>
     <!-- Action Modal -->
     <div
