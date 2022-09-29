@@ -57,7 +57,6 @@
         </label>
       </div>
     </div>
-<<<<<<< HEAD
 
     <br />
     <div align="right">
@@ -69,8 +68,6 @@
         Download PDF
       </button>
     </div>
-=======
->>>>>>> 2ab77d1992321c92cde45d9020025860cf4be912
     <br/>
       <!--table view-->
       
@@ -522,7 +519,6 @@
     reload(){
       location.reload();
     },
-<<<<<<< HEAD
 
     downloadPdf(){
 
@@ -575,8 +571,6 @@
     }
 
 
-=======
->>>>>>> 2ab77d1992321c92cde45d9020025860cf4be912
     },
     mounted: async function () {
       await this.getData();
