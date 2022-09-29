@@ -6,17 +6,16 @@
   "scripts": {
     "start": "concurrently \" cd client && npm i && npm start\" \"cd server && npm i && npm start\""
   },
-  
   "repository": {
     "type": "git",
     "url": "https://github.com/SuranSandeepa/CrossFitLanka.git"
   },
-  
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SuranSandeepa/CrossFitLanka/issues"
   },
+<<<<<<< HEAD
 <<<<<<< HEAD
   "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme",
   "dependencies": {
@@ -26,4 +25,15 @@
   
   "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme"
 >>>>>>> 151a097fb350652c07739eabfac569f34a9937c7
+=======
+  "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme",
+  "dependencies": {
+<<<<<<< HEAD
+    "vuex": "^4.0.2",
+=======
+    "html2canvas": "^1.4.1",
+>>>>>>> 0843bf16011db639e4dfc292fcfb03bcfc6d7afa
+    "multer": "^1.4.5-lts.1"
+  }
+>>>>>>> 203a5671f20d25192a52d32804b0f98ecdee6f2d
 }

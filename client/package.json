@@ -8,8 +8,12 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.25",
     "sweetalert": "^2.1.2",
     "vue": "^3.2.13",
+    "vue-html-to-paper": "^1.4.4",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0",
     "vuex-persistedstate": "^4.1.0"
