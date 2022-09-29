@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 require("dotenv").config(); //read .env file
 
 const user = require("./routes/user");
+const blog = require("./routes/blog");
 const trainers = require("./routes/trainers");
 
 const members = require("./routes/members"); //members routes added
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json()); //use body-parser to convert jason to javascript object
 
 app.use("/user", user);
+app.use("/blog", blog);
 app.use("/trainers", trainers);
 
 app.use("/members", members); //member path added

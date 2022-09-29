@@ -15,6 +15,17 @@
   "bugs": {
     "url": "https://github.com/SuranSandeepa/CrossFitLanka/issues"
   },
+<<<<<<< HEAD
+<<<<<<< HEAD
+  "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme",
+  "dependencies": {
+  "multer": "^1.4.5-lts.1"
+  }
+=======
+  
+  "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme"
+>>>>>>> 151a097fb350652c07739eabfac569f34a9937c7
+=======
   "homepage": "https://github.com/SuranSandeepa/CrossFitLanka#readme",
   "dependencies": {
 <<<<<<< HEAD
@@ -28,5 +39,6 @@
     "multer": "^1.4.5-lts.1"
 >>>>>>> 203a5671f20d25192a52d32804b0f98ecdee6f2d
   }
+>>>>>>> 203a5671f20d25192a52d32804b0f98ecdee6f2d
 }
 
