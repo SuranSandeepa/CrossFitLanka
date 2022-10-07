@@ -27,6 +27,8 @@ The project is focused on developing a web application for a gym named Cross Fit
   * ### Procedure of running the project
 > 1. Clone the repository.
 > 2. Create a file named .env inside server folder.
+> 3. Declare a key named 'MONGODB_URI' and add your MongoDB database link as the value & Declare a key named 'PORT' and add port number as the value.
+> 4. Open the root directory in command prompt and run the command 'npm start'
 
 ## Group Details
 ```
