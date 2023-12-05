@@ -33,7 +33,4 @@ The project is focused on developing a web application for a gym named Cross Fit
 ## Group Details
 ```
 Suran Sandeepa Uththawamawadu
-Heshan Siriwardana
-Odara Amarakoon 
-Buddhima Weerasinghe
 ```
